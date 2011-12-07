@@ -1,0 +1,53 @@
+<%%= form_for(@post) do |f| %>
+  <%% if @post.errors.any? %>
+    <div id="error_explanation" class="alert-message block-message error">
+      <a class="close" href="#">x</a>
+      <p>
+        <strong><%%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</strong>
+      </p>
+      <ul>
+      <%% @post.errors.full_messages.each do |msg| %>
+        <li><%%= msg %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+  
+<%- fields.each do |field_name, field_type| -%>
+  <%- case field_type -%>
+  <%- when :text -%>
+  <div class="clearfix">
+    <%%= f.label :<%= field_name %> %>
+    <div class="input">
+      <%%= f.text_area :<%= field_name %>, :cols => nil, :class => "span8" %>
+    </div>    
+  </div>
+  <%- when :datetime -%>
+  <div class="clearfix">
+    <%%= f.label :<%= field_name %> %>
+    <div class="input">
+      <%%= f.datetime_select :<%= field_name %>, {}, :style => "width: auto" %>
+    </div>    
+  </div>
+  <%- when :boolean -%>
+  <div class="clearfix">
+    <%%= f.label :<%= field_name %> %>
+    <div class="input">
+      <ul class="inputs-list">
+        <li><label><%%= f.check_box :<%= field_name %> %></label></li>
+      </ul>
+    </div>    
+  </div>  
+  <%- else -%>
+  <div class="clearfix">
+    <%%= f.label :<%= field_name %> %>
+    <div class="input">
+      <%%= f.text_field :<%= field_name %>, :class => "span8" %>
+    </div>    
+  </div>
+  <% end %>
+<%- end -%>
+  <div class="actions">
+    <%%= f.submit :class => "btn primary" %>
+  </div>
+<%% end %>
