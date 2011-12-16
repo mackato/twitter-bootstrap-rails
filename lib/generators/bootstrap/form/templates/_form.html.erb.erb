@@ -1,12 +1,12 @@
-<%%= form_for(@post) do |f| %>
-  <%% if @post.errors.any? %>
+<%%= form_for(@<%= model_name %>) do |f| %>
+  <%% if @<%= model_name %>.errors.any? %>
     <div id="error_explanation" class="alert-message block-message error">
       <a class="close" href="#">x</a>
       <p>
-        <strong><%%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</strong>
+        <strong><%%= pluralize(@<%= model_name %>.errors.count, "error") %> prohibited this post from being saved:</strong>
       </p>
       <ul>
-      <%% @post.errors.full_messages.each do |msg| %>
+      <%% @<%= model_name %>.errors.full_messages.each do |msg| %>
         <li><%%= msg %></li>
       <%% end %>
       </ul>
